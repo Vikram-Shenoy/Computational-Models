@@ -106,3 +106,4 @@ with a 1 and 0 whether a person has had a drug or not
 
 15th April Evening: One hot encoding done on the dataset dictionary for drug names corresponding to patient names, 
                     next step would be to delete the patients who have been discarded in the main dataset still present in drug- patient dataset
+17th april:  A possible solution to the class imbalance problem, we set different weights for different categories according to the proportion of samples belonging to each category
