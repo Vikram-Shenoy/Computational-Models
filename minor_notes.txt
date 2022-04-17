@@ -1,0 +1,108 @@
+Loaded dataset
+Inpatient numbers are unique values for main dataset
+however for the drug mapping, one patient can be mapped to many drugs 
+2008 patients
+2004 patients in the drug mapping CSV who have been assigned drugs 
+One patient could be assigned more than one drug 
+
+Removing attributes which have largely NaN values 
+
+Columns with more than 1000 values NaN:
+['LVEF', 'mitral.valve.EMS', 'mitral.valve.AMS', 'EA', 'tricuspid.valve.return.velocity', 'tricuspid.valve.return.pressure', 'time.of.death..days.from.admission.', 're.admission.time..days.from.admission.', 'time.to.emergency.department.within.6.months',
+ 'myoglobin', 'Inorganic.Phosphorus', 'serum.magnesium', 'high.sensitivity.protein', 'cholinesterase', 'glutamic.oxaliplatin', 'erythrocyte.sedimentation.rate', 'homocysteine', 'apolipoprotein.A', 'apolipoprotein.B', 'lipoprotein', 'pH', 'standard.residual.base', 'standard.bicarbonate', 'partial.pressure.of.carbon.dioxide', 'total.carbon.dioxide', 'methemoglobin', 'hematocrit.blood.gas', 'reduced.hemoglobin', 'potassium.ion', 'chloride.ion', 'sodium.ion', 'glucose.blood.gas', 'lactate', 'measured.residual.base', 'measured.bicarbonate', 'carboxyhemoglobin', 'body.temperature.blood.gas', 'oxygen.saturation', 'partial.oxygen.pressure', 'oxyhemoglobin', 'anion.gap', 'free.calcium', 'total.hemoglobin']
+columns with more than 1500 values NaN:
+['EA', 'tricuspid.valve.return.pressure', 'time.of.death..days.from.admission.', 'myoglobin', 'Inorganic.Phosphorus', 'serum.magnesium', 'cholinesterase', 'erythrocyte.sedimentation.rate', 'homocysteine', 'apolipoprotein.A', 'apolipoprotein.B', 'lipoprotein']
+columns with more than 2000 values NaN:
+cholinesterase- a full NULL column 
+
+Cholinesterase was dropped- although it was a biological marker, it doesnt have any values 
+
+Checking on Columns with more than 1500 null values to determine its usage
+
+We don't use values of death as those medicines predicted are wrong 
+
+we drop the column time of death.. days from admission
+
+we are not clearing biological markers closely related to the heart even though it is more than 80% Nan
+
+we will remove other external factors that are not felt necassary 
+
+'re.admission.time..days.from.admission.', 'time.to.emergency.department.within.6.months'
+the above two columns are removed 
+
+when assigning weights, can we use negative markers 
+deleting multiple external factor columns
+one hot encoding the data 
+
+we deleted attributes ['DestinationDischarge', 'admission.ward','admission.way','occupation','discharge.department']
+Height and weight deleted as BMI is present already
+we convert the None value of respiratory support to NaN
+
+*Negative weights for following attributes?* - outcome.during.hospitalization, death.within.28.days,re.admission.within.28.days, death.within.3.months,re.admission.within.3.months,death.within.6.months....
+
+Gender column Male and Female - 1 and 0
+Type of heart failure- left,right,both-0,1,2 
+
+NYHA cardiac function classification 
+New York Heart Association (NYHA) Functional Classification
+Class I. No limitation of physical activity. ...
+Class II(Mild) Slight limitation of physical activity. ...
+Class III(Moderate) Marked limitation of physical activity. ...
+Class IV(Severe) Unable to carry out any physical activity without discomfort. ...
+ only 2,3 ,4 were present in the dataset
+
+Killip grade- converted from roman numberals to integers - relates to heart disease well
+
+type of respiratory failure- Nontype-0 type 1
+consiousness - clear, responsive to pain, sound, non repsonsive - 0.1.2.3
+oxygen inhalation- oxygen therapy, Ambient Air
+Outcome during hospitalization-- 1-Alive 0-Dead, 2-discharge against order
+Age Category- average of the decade is taken
+
+DATE: 14th April 2022 
+
+11 patients in the data set died 
+we decided to remove the rows of patients who have died for now 
+subsequently we delete the columns death.within.28.days, death.within.3.months, death.within.6.months
+
+we dont need visit times so it is dropped 
+
+I have removed the attrubutes readmission during 6 months, 3 months, 28 days,because as of now we don't have any further 
+information about it to properly tell us whether or not the readmission was for another heart attack or not and this could lead 
+to further misinformation for the system.
+
+However, return to emergency departmentin te 6 months is still kept as an attribute because i am not sure 
+if it may or may not be useful, even outcome during hospitalization I am not sure what to do with ALive and DIscharge against 
+order as we have no further information for it 
+
+Discharge days was also deleted 
+the first 34 columns from gender are noramlised 
+Respiratory support has to rechecked 
+
+looking at respiratory support there were three readings
+None
+IMV - invasive mechanical ventilation
+NIMV- None invasive mechanical ventilation
+How important the type of ventilation is to the drug again is something i am not sure.
+We need to look through the data 
+and come up with important questions to ask to a doctor.
+for now, i am converting respiratory support None-0 IMV-1 and NIMV-2 
+I will then normalise all the data 
+
+15th April
+return to emergency department within 6 months is deleted
+outcome during hospitalization is deleted 
+
+Total number of rows in the drug dataset is 12654
+the total number of unique drugs is 18
+we are aiming to classify with these 18 drugs 
+Spironolactone tablet                               1833
+is the most commonly given tablet
+Dobutamine hydrochloride injection                    22
+is the least commonly given injection
+
+for the drug data set, we can transform the dataset into unique patient values along with 18 columns of the drugs and indicate
+with a 1 and 0 whether a person has had a drug or not
+
+15th April Evening: One hot encoding done on the dataset dictionary for drug names corresponding to patient names, 
+                    next step would be to delete the patients who have been discarded in the main dataset still present in drug- patient dataset
