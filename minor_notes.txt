@@ -116,3 +116,9 @@ Multiple reasons for this:(In order of likelyhood)
 - The dataset has nan values
 - Exploding gradient problem(Happens with large data with large no of columns)
 - The dataframe wasn't turned into a numpy array (2-D for main dataset)
+
+23rd April evening:
+KNN imputation was done it was found during this that body temperature.blodd.gas was completely empty and hance it was dropped as a column.
+KNN imputation needs to be improved and pipelined
+New methods to deal with nan values need to be looked into
+First model for the neural network started working without errors although the predicted values  are ambigous
