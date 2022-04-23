@@ -108,3 +108,11 @@ with a 1 and 0 whether a person has had a drug or not
                     next step would be to delete the patients who have been discarded in the main dataset still present in drug- patient dataset
 17th april:  A possible solution to the class imbalance problem, we set different weights for different categories according to the proportion of samples belonging to each category
 19th april: Removed the dead people from drug and added the people who were given no drugs
+
+23rd april:
+Sorted both drug dictionary and biological indicators dataset, removed the inpatient number from both the datasets as the the rows were ordered.
+Made a simple neural network and tried to fit it with the data, but it was observed that loss for each epoch was nan.
+Multiple reasons for this:(In order of likelyhood)
+- The dataset has nan values
+- Exploding gradient problem(Happens with large data with large no of columns)
+- The dataframe wasn't turned into a numpy array (2-D for main dataset)
