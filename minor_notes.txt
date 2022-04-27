@@ -129,3 +129,8 @@ range is between 10-20
 then did miss forest imputation 
 worked further with the neural network 
 loss is currently around 0.1530 (MSE)
+
+27th April
+Removed Values with co-relation greater then 90 percent. Reduced the dataset from 144 columns to 121 columns.
+Features Removed are - 
+'measured.bicarbonate','international.normalized.ratio','standard.bicarbonate','reduced.hemoglobin','oxyhemoglobin','measured.residual.base','standard.bicarbonate','hematocrit','measured.bicarbonate','neutrophil.count','total.carbon.dioxide','hematocrit.blood.gas','platelet.hematocrit','mean.corpuscular.volume','verbal.response','low.density.lipoprotein.cholesterol','tricuspid.valve.return.pressure','direct.bilirubin','movement','indirect.bilirubin','map','eosinophil.ratio','lactate.dehydrogenase','eye.opening'
