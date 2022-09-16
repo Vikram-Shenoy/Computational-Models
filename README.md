@@ -1,4 +1,4 @@
-# This is a private project, cloning, copying or forking any code is not allowed.
+# This is a private project, cloning, copying or forking any code and data is not allowed.
 ### Paper - Computational Models for Prognosis of Medication for Cardiovascular Diseases (Available After Sept 24 2022)
 
 Relevant Links-
